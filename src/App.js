@@ -51,7 +51,13 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div style={{ height: '50vh' }}>
-          <Map>{this.markerList()}</Map>
+          <Map
+            viewProperties={{
+              center: { latitude: 37.758431, longitude: -122.426622 },
+            }}
+          >
+            {this.markerList()}
+          </Map>
         </div>
       </div>
     );
