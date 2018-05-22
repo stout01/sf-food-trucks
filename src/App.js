@@ -32,6 +32,7 @@ class App extends Component {
         longitude: Number(item.longitude),
       },
       id: item.objectid,
+      address: item.address,
       title: item.applicant,
       description: item.fooditems,
     }));
@@ -53,6 +54,7 @@ class App extends Component {
           <Map
             viewProperties={{
               center: { latitude: 37.758431, longitude: -122.426622 },
+              zoom: 10,
             }}
           >
             {this.getMarkers()}

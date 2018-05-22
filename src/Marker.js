@@ -14,7 +14,24 @@ export default class Marker extends React.Component {
             latitude,
           },
           popupTemplate: {
-            content: this.props.description,
+            content: [
+              {
+                type: 'fields',
+                fieldInfos: [
+                  {
+                    fieldName: 'address',
+                    label: this.props.address,
+                    visible: true,
+                  },
+                  {
+                    type: 'text',
+                    fieldName: 'description',
+                    label: this.props.description,
+                    visible: true,
+                  },
+                ],
+              },
+            ],
             title: this.props.title,
           },
           symbol: {
