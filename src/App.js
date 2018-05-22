@@ -12,28 +12,32 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios
+    this.fetchFoodTrucks().then(markers =>
+      this.setState({ ...this.state, markers }),
+    );
+  }
+
+  fetchFoodTrucks() {
+    return axios
       .get(
         'https://data.sfgov.org/resource/6a9r-agq8.json?$where=status%20!=%20%27REQUESTED%27',
       )
-      .then(response => {
-        const markers = [];
-        response.data.forEach(item => {
-          markers.push({
-            position: {
-              latitude: Number(item.latitude),
-              longitude: Number(item.longitude),
-            },
-            id: item.objectid,
-            title: item.applicant,
-            description: item.fooditems,
-          });
-        });
-        this.setState({ ...this.state, markers });
-      });
+      .then(response => this.parseFoodTruckResponse(response));
   }
 
-  markerList() {
+  parseFoodTruckResponse(response) {
+    return response.data.map(item => ({
+      position: {
+        latitude: Number(item.latitude),
+        longitude: Number(item.longitude),
+      },
+      id: item.objectid,
+      title: item.applicant,
+      description: item.fooditems,
+    }));
+  }
+
+  getMarkers() {
     return this.state.markers.map(marker => (
       <Marker key={marker.id} {...marker} />
     ));
@@ -51,7 +55,7 @@ class App extends Component {
               center: { latitude: 37.758431, longitude: -122.426622 },
             }}
           >
-            {this.markerList()}
+            {this.getMarkers()}
           </Map>
         </div>
       </div>
