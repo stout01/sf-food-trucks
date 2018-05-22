@@ -1,6 +1,6 @@
 {
-  "name": "arcgis-map",
-  "version": "0.1.0",
+  "name": "sf-food-trucks",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
