@@ -13,6 +13,10 @@ export default class Marker extends React.Component {
             longitude,
             latitude,
           },
+          popupTemplate: {
+            content: this.props.description,
+            title: this.props.title,
+          },
           symbol: {
             type: 'simple-marker', // auto-casts as new SimpleMarkerSymbol()
             color: [226, 119, 40],
