@@ -2,7 +2,7 @@ import React from 'react';
 import { loadModules } from 'react-arcgis';
 
 export default class Marker extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const { latitude, longitude } = this.props.position;
     loadModules(['esri/Graphic'])
       .then(([Graphic]) => {
